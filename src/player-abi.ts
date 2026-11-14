@@ -1,0 +1,26 @@
+import { parseAbi } from "viem";
+
+export const potrunPlayerAbi = parseAbi([
+  "function spin(uint256 poolId) payable returns (uint256 requestId)",
+  "function spin(uint256 poolId, uint256 amount) payable returns (uint256 requestId)",
+  "function getPool(uint256 poolId) view returns (address token, uint256 accumulatedFees, uint256 totalSpins)",
+  "function getPoolByToken(address token) view returns (uint256 poolId, uint256 accumulatedFees, uint256 totalSpins)",
+  "function getOutcomes() view returns (uint32[9] weights, uint32[9] multipliers, uint32 totalWeight)",
+  "function previewPayout(uint256 poolId, uint8 number, uint256 amount) view returns (uint256 potentialPayout, uint32 multiplier, uint32 weight, uint32 totalWeight)",
+  "function spinRequests(uint256 requestId) view returns (uint256 poolId, address player, uint256 amount, bool fulfilled, uint8 outcomeNumber, uint256 payoutAmount)",
+  "function pendingWithdrawals(address player, address token) view returns (uint256)",
+  "function claimPendingPayout(address token)",
+  "function platformFeePct() view returns (uint32)",
+  "function poolCount() view returns (uint256)",
+  "function tokenToPoolId(address token) view returns (uint256)",
+  "function MAX_PAYOUT_POOL_PCT() view returns (uint32)",
+  "function NATIVE_ETH() view returns (address)",
+  "event SpinRequested(uint256 indexed requestId, uint256 indexed poolId, address indexed player, address token, uint256 amount)",
+  "event SpinFulfilled(uint256 indexed requestId, uint256 indexed poolId, address indexed player, address token, uint256 amount, uint8 outcomeNumber, uint32 multiplier, uint256 payoutAmount, uint256 remainingPot)",
+  "error PoolDoesNotExist(uint256 poolId)",
+  "error IncorrectPayment()",
+  "error NativePaymentNotAllowed()",
+  "error InvalidAmount()",
+  "error NoPendingPayout()",
+  "error TransferFailed()",
+]);
